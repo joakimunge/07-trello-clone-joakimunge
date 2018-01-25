@@ -139,7 +139,7 @@ main {
 	}
 }
 
-@keyframes fadeInRight {
+/* @keyframes fadeInRight {
 	0% {
 		opacity: 0;
 		transform: translateX(80px);
@@ -149,9 +149,9 @@ main {
 		opacity:1;
 		transform: translateX(0px);
 	}
-}
+} */
 
-@keyframes slideRight {
+/* @keyframes slideRight {
 	0% {
 		transform: translateX(0px);
 	}
@@ -159,4 +159,4 @@ main {
 	100% {
 		transform: translateX(280px);
 	}
-}
+} */

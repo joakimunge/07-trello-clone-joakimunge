@@ -14,8 +14,8 @@ $(document).ready(() => {
 		}
 
 		init() {
-			//Listeners
 			this.render();
+			this.listeners();
 		}
 
 		render() {
@@ -26,6 +26,10 @@ $(document).ready(() => {
 					<div class="list">
 						<div class="list__header">
 							${this.title}
+							<span class="list__delete">
+								<i class="fa fa-times" aria-hidden="true">
+								</i>
+							</span>
 						</div>
 						<ul class="list__content">
 							${cards}
@@ -43,6 +47,13 @@ $(document).ready(() => {
 			$('.column').last().before(html);
 		}
 
+		listeners() {
+			$('.list__delete').on('click', e => {
+				let target = e.target.closest('.column');
+  				target.remove();
+			})
+		}
+
 		update() {
 			this.init()
 			this.render();
@@ -57,15 +68,15 @@ $(document).ready(() => {
 		}
 
 		init() {
-			//Listeners
 			this.render();
+			this.listeners();
 			$('.list__add')
 				.find('input:text')
 					.val('');
 		}
 
 		render() {
-			return `
+			const html = `
 			<li class="list__content__card">
 				${this.card}
 				<span class="card__delete">
@@ -102,32 +113,14 @@ $(document).ready(() => {
   	const newCardHandler = (e) => {
   		e.preventDefault();
   		const data = $(e.target).serializeArray();
-  		let newCard = `
-  			<li class="list__content__card">
-        		${data[0].value}
-        		<span class="card__delete">
-        			<i class="fa fa-times" aria-hidden="true">
-        			</i>
-        		</span>
-			</li>	
-		`
-
-		$('.list__add')
-			.find('input:text')
-				.val('');
+  		const newCard = new Card(data[0].value);
 
 		const target = 
 			$(e.target)
 				.closest('.list')
 					.find('.list__content');
 
-    	target.append(newCard);
-
-    	newCard = target.find('.card__delete').last();
-
-    	$(newCard).on('click', e => {
-  			deleteCardHandler(e);
-  		});
+    	target.append(newCard.render());
   	}
 
   	const deleteCardHandler = (e) => {
@@ -151,8 +144,6 @@ $(document).ready(() => {
 			const data = $(e.target).serializeArray();
 			const newList = new List(data[0].value);
 			console.log(newList);
-
-		$('.column').last().before();
 
 		$('.list__new--card')
 			.last()
