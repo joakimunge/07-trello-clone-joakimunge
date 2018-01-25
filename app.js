@@ -11,14 +11,14 @@ $(document).ready(() => {
 		      placeholder: "sortable-placeholder",
 		      revert: true
 		    })
-		    .disableSelection();
+		    	.disableSelection();
 
 	    $(".list__content")
 		    .sortable({
 		    	cursor: "move",
 		    	connectWith: ".list__content"
 		    })
-		    .disableSelection();
+		    	.disableSelection();
   	}
 
   	//Card handlers
@@ -106,7 +106,22 @@ $(document).ready(() => {
 		});
 
 		initSort();
-  	});
+	  });
+	  
+	  //Dialog
+	  $('.list__content__card').on('click', (e) => {
+		  cardDialog();
+	  });
+
+	  const cardDialog = () => {
+		  $('#dialog').dialog({
+			  autoOpen: false,
+			  modal: true,
+			  show: { effect: "fadeIn", duration: 500},
+			  hide: { effect: "fadeOut", duration: 500}
+		  });
+		  $('#dialog').dialog('open');		  
+	  }
   
   	initSort();
 
