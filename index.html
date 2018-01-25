@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>07 - Trello Clone</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <span class="logo">JELLO</span>
+    </header>
+    <main id="app">
+        <section class="board">
+            <div class="section column">
+                <div class="list">
+                    <div class="list__header">
+                        Todo
+                    </div>
+                    <ul class="list__content">
+                        <li class="list__content__card">
+                            <p>Default card. Delete...</p>
+                            <span class="card__delete"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        </li>
+                    </ul>
+                    <ul class="input">
+                        <li class="list__new--card">
+                            <form class="field list__add" action="index.html">
+                                <input type="text" name="title" placeholder="Add new card.." autocomplete="off" />
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section column">
+                <div class="list">
+                    <div class="list__header">
+                        In progress
+                    </div>
+                    <ul class="list__content">
+                    </ul>
+                    <ul class="input">
+                        <li class="list__new--card">
+                            <form class="field list__add" action="index.html">
+                                <input type="text" name="title" placeholder="Add new card.." autocomplete="off" />
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section column">
+                <div class="list">
+                    <div class="list__header">
+                        Done
+                    </div>
+                    <ul class="list__content">
+                    </ul>
+                    <ul class="input">
+                        <li class="list__new--card">
+                            <form class="field list__add" action="index.html">
+                                <input type="text" name="title" placeholder="Add new card.." autocomplete="off" />
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column">
+                <div class="list">
+                    <ul class="list__addnew">
+                        <li>
+                            <form class="field list__new--list" action="index.html">
+                                <input type="text" name="title" placeholder="Add new list.." autocomplete="off" />
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+
+</html>
