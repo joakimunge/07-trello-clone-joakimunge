@@ -15,6 +15,7 @@ $(document).ready(() => {
 
 		init() {
 			this.render();
+			this.renderCards();
 			this.listeners();
 		}
 
@@ -32,7 +33,6 @@ $(document).ready(() => {
 							</span>
 						</div>
 						<ul class="list__content">
-							${cards}
 						</ul>
 						<ul class="input">
 							<li class="list__new--card">
@@ -47,11 +47,17 @@ $(document).ready(() => {
 			$('.column').last().before(html);
 		}
 
+		renderCards() {
+			$.each(this.cards, (index, value) => {
+				const card = new Card(this.cards[index].title);
+			});
+		}
+
 		listeners() {
 			$('.list__delete').on('click', e => {
 				let target = e.target.closest('.column');
   				target.remove();
-			})
+			});
 		}
 
 		update() {
@@ -64,7 +70,7 @@ $(document).ready(() => {
 	class Card {
 		constructor(card) {
 			this.card = card;
-			this.init()
+			this.init();
 		}
 
 		init() {
@@ -85,6 +91,17 @@ $(document).ready(() => {
 				</span>
 			</li>
 			`
+			const target = $(':focus').closest('.list').children('.list__content');
+			target.append(html);
+			
+
+		}
+
+		listeners() {
+			$('body').on('click', '.card__delete', (e) => {
+				let target = $(e.target).closest('li');
+  				target.remove();
+			});
 		}
 	}
 
@@ -114,24 +131,7 @@ $(document).ready(() => {
   		e.preventDefault();
   		const data = $(e.target).serializeArray();
   		const newCard = new Card(data[0].value);
-
-		const target = 
-			$(e.target)
-				.closest('.list')
-					.find('.list__content');
-
-    	target.append(newCard.render());
   	}
-
-  	const deleteCardHandler = (e) => {
-  		let target = e.target;
-  		target = target.closest('li.list__content__card');
-  		target.remove();
-  	}
-
-  	$('.card__delete').on('click', e => {
-  		deleteCardHandler(e);
-  	});
 
   	$('.list__new--card').submit(e => {
   		newCardHandler(e);
@@ -143,7 +143,6 @@ $(document).ready(() => {
 			e.preventDefault();
 			const data = $(e.target).serializeArray();
 			const newList = new List(data[0].value);
-			console.log(newList);
 
 		$('.list__new--card')
 			.last()
