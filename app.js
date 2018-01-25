@@ -1,5 +1,82 @@
 $(document).ready(() => {
 
+	class List {
+		constructor(title, cards = []) {
+			this.title = title;
+
+			this.cards = [
+				{id: "1", title: "card-1"},
+				{id: "2", title: "card-2"},
+				{id: "3", title: "card-3"},
+			];
+
+			this.init();
+		}
+
+		init() {
+			//Listeners
+			this.render();
+		}
+
+		render() {
+			//Render cards, then attach?
+			const cards = this.cards.map(card => new Card(card)).join("");
+			const html =  `
+				<div class="section column">
+					<div class="list">
+						<div class="list__header">
+							${this.title}
+						</div>
+						<ul class="list__content">
+							${cards}
+						</ul>
+						<ul class="input">
+							<li class="list__new--card">
+								<form class="field list__add" action="index.html">
+									<input type="text" name="title" placeholder="Add new card.." autocomplete="off" />
+								</form>
+							</li>
+						</ul>
+					</div>
+				</div>
+			`
+			$('.column').last().before(html);
+		}
+
+		update() {
+			this.init()
+			this.render();
+		}
+
+	}
+
+	class Card {
+		constructor(card) {
+			this.card = card;
+			this.init()
+		}
+
+		init() {
+			//Listeners
+			this.render();
+			$('.list__add')
+				.find('input:text')
+					.val('');
+		}
+
+		render() {
+			return `
+			<li class="list__content__card">
+				${this.card}
+				<span class="card__delete">
+					<i class="fa fa-times" aria-hidden="true">
+					</i>
+				</span>
+			</li>
+			`
+		}
+	}
+
 	// Initialize sorting on base columns and list
 	const initSort = () => {
 	    $(".section")
@@ -72,32 +149,10 @@ $(document).ready(() => {
   		.submit(e => {
 			e.preventDefault();
 			const data = $(e.target).serializeArray();
-			const newList = `
-				<div class="section column">
-				<div class="list">
-					<div class="list__header">
-						${data[0].value}
-					</div>
-					<ul class="list__content">
-					</ul>
-					<ul class="input">
-						<li class="list__new--card">
-	                        <form class="field list__add" action="index.html">
-	                            <input type="text" name="title" placeholder="Add new card.." autocomplete="off" />
-	                        </form>
-	                	</li>
-					</ul>
-				</div>
-			</div>
-		`
-		$('.column').last().before(newList);
+			const newList = new List(data[0].value);
+			console.log(newList);
 
-		const target = $('.column').last();
-		target.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',   
-	    	(e) => {
-	    		target.removeClass('slideRight');
-	    });
-		target.addClass('slideRight');
+		$('.column').last().before();
 
 		$('.list__new--card')
 			.last()
