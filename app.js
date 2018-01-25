@@ -13,9 +13,10 @@ $(document).ready(() => {
 			$('#dialog').dialog({
 				autoOpen: false,
 				modal: true,
-				show: { effect: "fadeIn", duration: 500},
-				hide: { effect: "fadeOut", duration: 500}
+				show: { effect: "fadeIn", duration: 800},
+				hide: { effect: "fadeOut", duration: 800}
 			});		  
+			$('#dialog__tabs').tabs();	  
 		}
 	}
 
