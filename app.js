@@ -15,13 +15,13 @@ $(document).ready(() => {
 
 		init() {
 			this.render();
-			this.renderCards();
+			// this.renderCards();
 			this.listeners();
 		}
 
 		render() {
-			//Render cards, then attach?
-			const cards = this.cards.map(card => new Card(card)).join("");
+			const cards = this.cards.map(card => new Card(card));
+			console.log(cards);
 			const html =  `
 				<div class="section column">
 					<div class="list">
@@ -33,6 +33,7 @@ $(document).ready(() => {
 							</span>
 						</div>
 						<ul class="list__content">
+							${cards}
 						</ul>
 						<ul class="input">
 							<li class="list__new--card">
@@ -57,6 +58,10 @@ $(document).ready(() => {
 			$('.list__delete').on('click', e => {
 				let target = e.target.closest('.column');
   				target.remove();
+			});
+			$('.list__new--card').last()
+				.submit(e => {
+					Handlers.newCard(e);
 			});
 		}
 
@@ -93,8 +98,7 @@ $(document).ready(() => {
 			`
 			const target = $(':focus').closest('.list').children('.list__content');
 			target.append(html);
-			
-
+			return html;
 		}
 
 		listeners() {
@@ -104,6 +108,20 @@ $(document).ready(() => {
 			});
 		}
 	}
+
+	const Handlers = {
+		newCard: (e) => {
+			e.preventDefault();
+			const data = $(e.target).serializeArray();
+			const newCard = new Card(data[0].value);
+		},
+		newList: (e) => {
+			e.preventDefault();
+			const data = $(e.target).serializeArray();
+			const newList = new List(data[0].value);
+		}
+	}
+
 
 	// Initialize sorting on base columns and list
 	const initSort = () => {
@@ -126,30 +144,13 @@ $(document).ready(() => {
 		    .disableSelection();
   	}
 
-  	//Card handlers
-  	const newCardHandler = (e) => {
-  		e.preventDefault();
-  		const data = $(e.target).serializeArray();
-  		const newCard = new Card(data[0].value);
-  	}
-
+  	//Listeners
   	$('.list__new--card').submit(e => {
-  		newCardHandler(e);
+  		Handlers.newCard(e);
   	});
 
-  	//List handlers
-  	$('.list__new--list')
-  		.submit(e => {
-			e.preventDefault();
-			const data = $(e.target).serializeArray();
-			const newList = new List(data[0].value);
-
-		$('.list__new--card')
-			.last()
-				.submit(e => {
-					newCardHandler(e);
-		});
-
+  	$('.list__new--list').submit(e => {
+		Handlers.newList(e);
 		initSort();
   	});
   
