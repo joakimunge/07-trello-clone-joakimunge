@@ -1,8 +1,11 @@
 $(document).ready(() => {
 
+	let idCounter = 0;
+
 	class App {
 		constructor() {
 			this.init();
+			initSort();
 		}
 
 		init() {
@@ -137,7 +140,11 @@ $(document).ready(() => {
 		newCard: (e) => {
 			e.preventDefault();
 			const data = $(e.target).serializeArray();
-			const newCard = new Card(data[0].value);
+			const newCard = new Card({
+				id: idCounter,
+				title: data[0].value
+			});
+			idCounter++;
 		},
 		newList: (e) => {
 			e.preventDefault();
