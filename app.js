@@ -1,5 +1,24 @@
 $(document).ready(() => {
 
+	class App {
+		constructor() {
+			this.init();
+		}
+
+		init() {
+			this.dialog();
+		}
+
+		dialog() {
+			$('#dialog').dialog({
+				autoOpen: false,
+				modal: true,
+				show: { effect: "fadeIn", duration: 500},
+				hide: { effect: "fadeOut", duration: 500}
+			});		  
+		}
+	}
+
 	class List {
 		constructor(title, cards = []) {
 			this.title = title;
@@ -107,6 +126,10 @@ $(document).ready(() => {
   				target.remove();
 			});
 		}
+
+		dialog() {
+
+		}
 	}
 
 	const Handlers = {
@@ -121,7 +144,6 @@ $(document).ready(() => {
 			const newList = new List(data[0].value);
 		}
 	}
-
 
 	// Initialize sorting on base columns and list
 	const initSort = () => {
