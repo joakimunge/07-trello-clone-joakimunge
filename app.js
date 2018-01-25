@@ -184,6 +184,6 @@ $(document).ready(() => {
 		initSort();
   	});
   
-  	initSort();
+	const app = new App();
 
 });
