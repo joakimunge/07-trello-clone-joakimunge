@@ -18,7 +18,7 @@ $(document).ready(() => {
 				modal: true,
 				show: { effect: "fadeIn", duration: 800},
 				hide: { effect: "fadeOut", duration: 800}
-			});		  
+			});	
 			$('#dialog__tabs').tabs();	  
 		}
 	}
@@ -82,6 +82,7 @@ $(document).ready(() => {
 				let target = e.target.closest('.column');
   				target.remove();
 			});
+
 			$('.list__new--card').last()
 				.submit(e => {
 					Handlers.newCard(e);
@@ -111,13 +112,13 @@ $(document).ready(() => {
 
 		render() {
 			const html = `
-			<li class="list__content__card">
-				${this.card}
-				<span class="card__delete">
-					<i class="fa fa-times" aria-hidden="true">
-					</i>
-				</span>
-			</li>
+				<li class="list__content__card" data-id="${this.card.id}">
+					${this.card.title}
+					<span class="card__delete">
+						<i class="fa fa-times" aria-hidden="true">
+						</i>
+					</span>
+				</li>
 			`
 			const target = $(':focus').closest('.list').children('.list__content');
 			target.append(html);
@@ -129,10 +130,14 @@ $(document).ready(() => {
 				let target = $(e.target).closest('li');
   				target.remove();
 			});
-		}
 
-		dialog() {
+			let target = 'li[data-id=' + this.card.id + ']';
 
+			$('body').on('click', target, (e) => {
+				// $('#dialog').dialog('open');
+				// console.log($(e.target).data('id'));
+				console.log(this);
+			})
 		}
 	}
 
@@ -183,7 +188,7 @@ $(document).ready(() => {
 		Handlers.newList(e);
 		initSort();
   	});
-  
+	  
 	const app = new App();
 
 });
