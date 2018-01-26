@@ -18,11 +18,12 @@ ul {
 header {
 	width:100%;
 	height:60px;
-	background-color: #BEBBBB;
+	background-color: #CC5A71;
 	display:flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	font-weight: bold;
+	padding:1em 1em;
 }
 
 main {
@@ -38,7 +39,18 @@ main {
 
 .logo {
 	font-size: 20px;
-	color:#444054;
+	color:#F8FFE5;
+}
+
+#reset {
+	justify-self: flex-end;
+	border:none;
+	padding:1em;
+	border-radius: 2px;
+	background-color: #F8FFE5;
+	color: #CC5A71;
+	font-weight: bold;
+	cursor: pointer;
 }
 
 .column {
@@ -89,6 +101,15 @@ main {
 
 .list__content__card:hover {
 	background-color: #ededed;
+}
+
+.list__content__card--placeholder {
+	margin-top: 0.5em;
+	padding:0.5em;
+	width: 100%;
+	border-radius: 2px;
+	min-height: 60px;
+	background-color: #34344A;
 }
 
 .field input {
@@ -142,11 +163,14 @@ main {
 
 .modal__header {
 	display:flex;
+	justify-content: space-between;
+	font-size: 14px;
 }
 
 .modal__close {
 	cursor: pointer;
 	justify-self:flex-end;
+	font-size: 22px;
 }
 
 .modal__overlay {
