@@ -14,62 +14,15 @@
 
 <body>
     <header class="header">
-        <span class="logo">JELLO</span>
+        <span class="logo"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </span>
+        <button id="manowar"><i class="fa fa-gavel" aria-hidden="true"></i>
+            </button>      
+        <button id="reset"><i class="fa fa-undo" aria-hidden="true"></i>
+            </button>
     </header>
     <main id="app">
         <section class="board">
-            <div class="section column">
-                <div class="list">
-                    <div class="list__header">
-                        Todo
-                    </div>
-                    <ul class="list__content">
-                        <li class="list__content__card">
-                            <p>Default card. Delete...</p>
-                            <span class="card__delete"><i class="fa fa-times" aria-hidden="true"></i></span>
-                        </li>
-                    </ul>
-                    <ul class="input">
-                        <li class="list__new--card">
-                            <form class="field list__add" action="index.html">
-                                <input type="text" name="title" placeholder="Add new card.." autocomplete="off" />
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="section column">
-                <div class="list">
-                    <div class="list__header">
-                        In progress
-                    </div>
-                    <ul class="list__content">
-                    </ul>
-                    <ul class="input">
-                        <li class="list__new--card">
-                            <form class="field list__add" action="index.html">
-                                <input type="text" name="title" placeholder="Add new card.." autocomplete="off" />
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="section column">
-                <div class="list">
-                    <div class="list__header">
-                        Done
-                    </div>
-                    <ul class="list__content">
-                    </ul>
-                    <ul class="input">
-                        <li class="list__new--card">
-                            <form class="field list__add" action="index.html">
-                                <input type="text" name="title" placeholder="Add new card.." autocomplete="off" />
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div class="column">
                 <div class="list">
                     <ul class="list__addnew">
@@ -85,21 +38,22 @@
         <div id="dialog" class="hidden">
             <div id="dialog__tabs">
                 <ul>
-                    <li class="tab"><a href="#tab1">Tab1</a></li>
-                    <li class="tab"><a href="#tab1">Tab1</a></li>                    
+                    <li class="tab"><a href="#tab-1">Tab1</a></li>
+                    <li class="tab"><a href="#tab-2">Tab1</a></li>                    
                 </ul>
-                <div id="tab1">
+                <div id="tab-1">
                     <form>
                         <input type="text" name="title" placeholder="Title..">
                     </form>
                 </div>
-                <div id="tab2">
+                <div id="tab-2">
                     <p>tab2</p>
                 </div>
             </div>
         </div>
     </main>
     <script src="app.js"></script>
+    <script src="widget.js"></script>    
 </body>
 
 </html>
