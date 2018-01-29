@@ -116,16 +116,29 @@ $(document).ready(() => {
 		}
 
 		sortable() {
-			    $(".section")
-				    .sortable({
-				      cursor: "move",
-				      connectWith: ".section",
-				      handle: ".list__header",
-				      helper: "clone",
-				      placeholder: "sortable-placeholder",
-				      revert: true
-				    })
-				    .disableSelection();
+			    // $(".section")
+				  //   .sortable({
+				  //     cursor: "move",
+				  //     connectWith: ".section",
+				  //     handle: ".list__header",
+				  //     helper: "clone",
+				  //     placeholder: "sortable-placeholder",
+				  //     revert: true
+				  //   })
+					// 	.disableSelection();
+
+					$('.board').sortable({
+						cursor: "move",
+						revert: "true",
+						placeholder: "sortable-placeholder",
+						forcePlaceholderSize: true,
+						start: function(event, ui) {
+							ui.placeholder.height(ui.item.find('.list').height());
+						}
+					})
+					.disableSelection();
+						
+
 
 			    $(".list__content")
 				    .sortable({
