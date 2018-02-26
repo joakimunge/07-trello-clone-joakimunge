@@ -116,17 +116,6 @@ $(document).ready(() => {
 		}
 
 		sortable() {
-			    // $(".section")
-				  //   .sortable({
-				  //     cursor: "move",
-				  //     connectWith: ".section",
-				  //     handle: ".list__header",
-				  //     helper: "clone",
-				  //     placeholder: "sortable-placeholder",
-				  //     revert: true
-				  //   })
-					// 	.disableSelection();
-
 					$('.board').sortable({
 						cursor: "move",
 						revert: "true",
@@ -138,8 +127,6 @@ $(document).ready(() => {
 					})
 					.disableSelection();
 						
-
-
 			    $(".list__content")
 				    .sortable({
 				    	cursor: "move",
@@ -279,14 +266,15 @@ $(document).ready(() => {
 
 			$('body').on('click', this.target, (e) => {
 				e.stopImmediatePropagation();
-				let modal = new Modal(this.card.title);
+				let modal = new Modal(this.card);
 			});
 		}
 	}
 
 	class Modal {
-		constructor(title) {
-			this.title = title;
+		constructor(card) {
+			this.card = card;
+			this.title = card.title;
 			this.init();
 			this.modal = $('.modal');
 		}
@@ -294,12 +282,27 @@ $(document).ready(() => {
 		init() {
 			this.render();
 			this.listeners();
+			this.setTabs();
+			this.setDatepicker();
 		}
 
 		listeners() {
 			$('body').on('click', '.modal__close', (e) => {
 				this.modal.remove();
 			});
+		}
+
+		setTabs() {
+			console.log(this.card);
+			$( function() {
+		    $( "#tabs" ).tabs();
+		  } );
+		}
+
+		setDatepicker() {
+			$( function() {
+		    $( "#datepicker" ).datepicker();
+		  } );
 		}
 
 		render() {
@@ -313,11 +316,24 @@ $(document).ready(() => {
 								</i>
 							</span>
 			            </div>
-			            <div class="modal__body">
-			                <p></p>
+			            <div id="tabs" class="modal__body">
+			                <ul>
+										    <li><a href="#tabs-1">Tab 1</a></li>
+										    <li><a href="#tabs-2">Tab 2</a></li>
+										    <li><a href="#tabs-3">Tab 3</a></li>
+										  </ul>
+										  <div id="tabs-1">
+										    <p>TAB 1</p>
+										  </div>
+										  <div id="tabs-2">
+										    <p>TAB 2</p>
+										  </div>
+										  <div id="tabs-3">
+										    <p>TAB 3</p>
+										  </div>
 			            </div>
 			            <div class="modal__footer">
-			                <p></p>
+			               <p>Due date: <input type="text" id="datepicker"></p>
 			            </div>
 			        </div>
 			        <div class="modal__overlay"></div>
